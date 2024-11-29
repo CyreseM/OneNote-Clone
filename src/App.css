@@ -27,11 +27,3 @@
   border-bottom: 2px solid rgb(152, 1, 152);
   width: calc(8% * 1.5); /* Width doubles on active */
 }
-
-.home-ribbon {
-  width: auto;
-  margin: 0 10px;
-  background-color: white;
-  height: 50px;
-  border-radius: 5px;
-}

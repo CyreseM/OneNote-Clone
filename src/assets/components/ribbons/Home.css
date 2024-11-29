@@ -1,0 +1,43 @@
+.home-ribbon {
+  width: auto;
+  margin: 0 10px;
+  background-color: white;
+  height: 50px;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.ribbonbtn {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem;
+  transform: scale(1.5);
+  cursor: pointer;
+  color: #de6c00;
+  display: block;
+}
+.ribbonbtn:hover {
+  background-color: #e9eef2;
+}
+.ribbonbtn:active {
+  filter: brightness(90%);
+}
+.divider {
+  width: 1px;
+  height: 100%;
+  background-color: #ccc;
+}
+.ribbonbtn.focusable:focus {
+  background-color: #e9eef2;
+}
+#font-select {
+  height: 70%;
+  width: 10rem;
+}
+#font-size-select {
+  height: 70%;
+}
