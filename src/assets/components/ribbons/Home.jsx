@@ -6,9 +6,18 @@ import {
   faItalic,
   faUnderline,
   faStrikethrough,
+  faList,
+  faListOl,
+  faIndent,
+  faOutdent,
+  faSquareCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { fonts, fontsize } from "../../fonts/font";
+import FontColorSelect from "../../fonts/FontColorSelect";
 import "./Home.css";
+import Highlighter from "../../fonts/Highlighter/Highlighter";
+import Alignment from "../../fonts/Alignment/Alignment";
+import TextStyleDropdown from "../../fonts/TextStyle/TextStyleDropdown";
 const Home = () => {
   return (
     <div>
@@ -47,6 +56,26 @@ const Home = () => {
         <button className="ribbonbtn focusable" style={{ color: "black" }}>
           <FontAwesomeIcon icon={faStrikethrough} />
         </button>
+        <FontColorSelect />
+        <Highlighter />
+        <button className="ribbonbtn focusable" style={{ color: "black" }}>
+          <FontAwesomeIcon icon={faList} />
+        </button>
+        <button className="ribbonbtn focusable" style={{ color: "black" }}>
+          <FontAwesomeIcon icon={faListOl} />
+        </button>
+        <button className="ribbonbtn focusable" style={{ color: "black" }}>
+          <FontAwesomeIcon icon={faIndent} />
+        </button>
+        <button className="ribbonbtn focusable" style={{ color: "black" }}>
+          <FontAwesomeIcon icon={faOutdent} />
+        </button>
+        <Alignment />
+        <div className="divider"></div>
+        <button className="ribbonbtn focusable" style={{ color: "black" }}>
+          <FontAwesomeIcon icon={faSquareCheck} />
+        </button>
+        <TextStyleDropdown />
       </div>
     </div>
   );

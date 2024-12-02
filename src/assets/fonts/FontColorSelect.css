@@ -1,0 +1,29 @@
+.color-picker {
+  display: inline-block;
+  position: relative;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 30px);
+  gap: 5px;
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 5px;
+}
+
+.color-box {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.color-box:hover {
+  border: 2px solid #000;
+}

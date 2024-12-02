@@ -1,12 +1,12 @@
 .home-ribbon {
-  width: auto;
   margin: 0 10px;
   background-color: white;
   height: 50px;
   border-radius: 5px;
   padding: 0.5rem 1.5rem;
   display: flex;
-  gap: 10px;
+  flex-grow: 1;
+  gap: 15px;
   align-items: center;
 }
 .ribbonbtn {
