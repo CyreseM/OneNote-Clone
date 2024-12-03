@@ -18,20 +18,28 @@ import Highlighter from "../../../fonts/Highlighter/Highlighter";
 import Alignment from "../../../fonts/Alignment/Alignment";
 import TextStyleDropdown from "../../../fonts/TextStyle/TextStyleDropdown";
 import { paste } from "../../../../features/homeSlice.js";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setFont, setFontSize } from "../../../../features/homeSlice.js";
 const Home = () => {
-  const pasted = useSelector((state) => state.home.value.clipboard);
-
   const dispatch = useDispatch();
+  // Get the current font and font size from Redux
+  const Font = useSelector((state) => state.home.value.font);
+  const fontSize = useSelector((state) => state.home.value.fontSize);
 
+  const handleFontChange = (e) => {
+    dispatch(setFont(e.target.value));
+  };
+
+  const handleFontSizeChange = (e) => {
+    dispatch(setFontSize(e.target.value));
+  };
   const handlePaste = async () => {
     try {
       // Access clipboard data
       const text = await navigator.clipboard.readText();
       // Dispatch the paste action with the clipboard data
       dispatch(paste(text));
-      console.log(pasted);
-      console.log("Pasted content:", text);
+      // console.log("Pasted content:", text);
     } catch (error) {
       console.error("Failed to read clipboard contents:", error);
     }
@@ -52,14 +60,25 @@ const Home = () => {
           <FontAwesomeIcon icon={faBrush} />
         </button>
         <div className="divider"></div>
-        <select name="font-select" id="font-select">
+
+        <select
+          name="font-select"
+          id="font-select"
+          value={Font}
+          onChange={handleFontChange}
+        >
           {fonts.map((font) => (
             <option key={font} value={font}>
               {font}
             </option>
           ))}
         </select>
-        <select name="font-size-select" id="font-size-select">
+        <select
+          name="font-size-select"
+          id="font-size-select"
+          value={fontSize}
+          onChange={handleFontSizeChange}
+        >
           {fontsize.map((size) => (
             <option key={size} value={size}>
               {size}
