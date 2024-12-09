@@ -21,9 +21,46 @@
 .headerContent p:hover {
   border-bottom: 2px solid rgb(180, 179, 179);
 }
-
 .headerContent p:focus {
   font-weight: bold;
   border-bottom: 2px solid rgb(152, 1, 152);
   width: calc(8% * 1.5); /* Width doubles on active */
+}
+p.focus {
+  font-weight: bold;
+  border-bottom: 2px solid rgb(152, 1, 152);
+  width: calc(8% * 1.5); /* Width doubles on active */
+}
+.area-container {
+  width: 100%;
+  padding: 10px;
+}
+.textarea {
+  width: 100%;
+  background-color: white;
+  height: 500px;
+  border: none;
+  outline: none;
+  margin-top: 10px;
+  resize: none;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 30px 40px;
+}
+
+b {
+  font-weight: 700;
+  font-size: inherit;
+}
+i {
+  font-size: inherit;
+}
+u {
+  font-size: inherit;
+}
+strike {
+  font-size: inherit;
+}
+li {
+  font-size: inherit;
 }
