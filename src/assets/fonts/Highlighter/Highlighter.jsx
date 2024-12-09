@@ -1,17 +1,22 @@
-import React from "react";
 import { colors } from "../../fonts/font";
 import { useState } from "react";
 import "../FontColorSelect.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHighlighter } from "@fortawesome/free-solid-svg-icons";
+
+import { useSelector } from "react-redux";
+
 const Highlighter = () => {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [isColorGridVisible, setColorGridVisible] = useState(false);
 
   // Handle color selection
+
   const handleColorSelect = (color) => {
     setSelectedColor(color);
-    setColorGridVisible(false); // Hide the color grid after selection
+    document.getSelection().anchorNode.parentElement.style.backgroundColor =
+      selectedColor;
+    setColorGridVisible(false); // Hide color grid after selection
   };
 
   // Toggle color grid visibility
