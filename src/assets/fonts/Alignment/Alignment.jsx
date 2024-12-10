@@ -9,16 +9,17 @@ import {
 import "../Alignment/Alignment.css";
 import { useState } from "react";
 const Alignment = () => {
-  const [selectedOption, setSelectedOption] = useState("left");
+  const [selectedOption, setSelectedOption] = useState("justifyLeft");
 
   const options = [
-    { value: "left", label: "Align Left", icon: faAlignLeft },
-    { value: "center", label: "Align Center", icon: faAlignCenter },
-    { value: "right", label: "Align Right", icon: faAlignRight },
+    { value: "justifyLeft", label: "Align Left", icon: faAlignLeft },
+    { value: "justifyCenter", label: "Align Center", icon: faAlignCenter },
+    { value: "justifyRight", label: "Align Right", icon: faAlignRight },
   ];
 
   const handleSelect = (value) => {
     setSelectedOption(value);
+    document.execCommand(value, false, null);
     console.log("Selected Option:", value);
   };
 

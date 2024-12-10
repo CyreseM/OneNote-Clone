@@ -17,9 +17,14 @@ import "./Home.css";
 import Highlighter from "../../../fonts/Highlighter/Highlighter";
 import Alignment from "../../../fonts/Alignment/Alignment";
 import TextStyleDropdown from "../../../fonts/TextStyle/TextStyleDropdown";
-import { paste } from "../../../../features/homeSlice.js";
 import { useDispatch, useSelector } from "react-redux";
-import { setFont, setFontSize } from "../../../../features/homeSlice.js";
+import {
+  paste,
+  setFont,
+  setFontSize,
+  activateFormatPainter,
+  applyStylesToSelection,
+} from "../../../../features/homeSlice.js";
 const Home = () => {
   const dispatch = useDispatch();
   // Get the current font and font size from Redux
@@ -28,21 +33,33 @@ const Home = () => {
 
   const handleFontChange = (e) => {
     dispatch(setFont(e.target.value));
+    document.getSelection().anchorNode.parentElement.style.fontFamily = Font; // Apply selected font
+    console.log(Font);
   };
 
   const handleFontSizeChange = (e) => {
     dispatch(setFontSize(e.target.value));
+    document.getSelection().anchorNode.parentElement.style.fontSize = `${e.target.value}px`;
   };
   const handlePaste = async () => {
     try {
-      // Access clipboard data
-      const text = await navigator.clipboard.readText();
-      // Dispatch the paste action with the clipboard data
-      dispatch(paste(text));
-      // console.log("Pasted content:", text);
+      const contentEditableElement = document.querySelector(".textarea");
+      if (contentEditableElement) {
+        const clipboardText = await navigator.clipboard.readText();
+        contentEditableElement.focus(); // Focus contentEditable
+        dispatch(paste(clipboardText)); // Dispatch paste action
+      }
     } catch (error) {
-      console.error("Failed to read clipboard contents:", error);
+      console.error("Failed to paste content:", error);
     }
+  };
+
+  const handleActivateFormatPainter = () => {
+    dispatch(activateFormatPainter());
+  };
+
+  const handleCommand = (command) => {
+    document.execCommand(command, false, null);
   };
 
   return (
@@ -56,7 +73,10 @@ const Home = () => {
         >
           <FontAwesomeIcon icon={faClipboard} />
         </button>
-        <button className="ribbonbtn focusable">
+        <button
+          className="ribbonbtn focusable"
+          onClick={handleActivateFormatPainter}
+        >
           <FontAwesomeIcon icon={faBrush} />
         </button>
         <div className="divider"></div>
@@ -86,30 +106,60 @@ const Home = () => {
           ))}
         </select>
 
-        <button className="ribbonbtn focusable">
+        <button
+          className="ribbonbtn focusable"
+          onClick={() => handleCommand("bold")}
+        >
           <p style={{ fontWeight: "bold", color: "black" }}>B</p>
         </button>
-        <button className="ribbonbtn focusable" style={{ color: "black" }}>
+        <button
+          className="ribbonbtn focusable"
+          style={{ color: "black" }}
+          onClick={() => handleCommand("italic")}
+        >
           <FontAwesomeIcon icon={faItalic} />
         </button>
-        <button className="ribbonbtn focusable" style={{ color: "black" }}>
+        <button
+          className="ribbonbtn focusable"
+          style={{ color: "black" }}
+          onClick={() => handleCommand("underline")}
+        >
           <FontAwesomeIcon icon={faUnderline} />
         </button>
         <button className="ribbonbtn focusable" style={{ color: "black" }}>
-          <FontAwesomeIcon icon={faStrikethrough} />
+          <FontAwesomeIcon
+            icon={faStrikethrough}
+            onClick={() => handleCommand("strikeThrough")}
+          />
         </button>
         <FontColorSelect />
         <Highlighter />
-        <button className="ribbonbtn focusable" style={{ color: "black" }}>
+        <button
+          className="ribbonbtn focusable"
+          style={{ color: "black" }}
+          onClick={() => handleCommand("insertUnorderedList")}
+        >
           <FontAwesomeIcon icon={faList} />
         </button>
-        <button className="ribbonbtn focusable" style={{ color: "black" }}>
+        <button
+          className="ribbonbtn focusable"
+          style={{ color: "black" }}
+          onClick={() => handleCommand("insertOrderedList")}
+        >
           <FontAwesomeIcon icon={faListOl} />
         </button>
-        <button className="ribbonbtn focusable" style={{ color: "black" }}>
+        <button
+          className="ribbonbtn focusable"
+          style={{ color: "black" }}
+          onClick={() => handleCommand("indent")}
+        >
           <FontAwesomeIcon icon={faIndent} />
         </button>
-        <button className="ribbonbtn focusable" style={{ color: "black" }}>
+        <button
+          className="ribbonbtn focusable"
+          style={{ color: "black" }}
+          onClick={() => handleCommand("outdent")}
+        >
           <FontAwesomeIcon icon={faOutdent} />
         </button>
         <Alignment />
