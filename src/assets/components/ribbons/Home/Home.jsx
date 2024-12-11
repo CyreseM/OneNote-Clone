@@ -83,6 +83,7 @@ const Home = () => {
 
         <select
           name="font-select"
+          tabIndex={-1}
           id="font-select"
           value={Font}
           onChange={handleFontChange}
@@ -96,6 +97,7 @@ const Home = () => {
         <select
           name="font-size-select"
           id="font-size-select"
+          tabIndex={-1}
           value={fontSize}
           onChange={handleFontSizeChange}
         >

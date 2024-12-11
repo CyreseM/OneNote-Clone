@@ -14,6 +14,7 @@ const Highlighter = () => {
   // Handle color selection
 
   const handleColorSelect = (color) => {
+    console.log(color);
     setSelectedColor(color);
     // Validate stored selection data
     if (!startContainerId || !endContainerId) return;

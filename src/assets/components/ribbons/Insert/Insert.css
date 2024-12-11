@@ -1,0 +1,31 @@
+.review-ribbon {
+  margin: 0 10px;
+  background-color: white;
+  height: 50px;
+  border-radius: 5px;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  flex-grow: 1;
+  gap: 15px;
+  align-items: center;
+}
+.fileAttachment {
+  padding: 10px 20px;
+
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.fileAttachment:hover {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+}
+.fileAttachment:active {
+  filter: brightness(50%);
+}
+#file-upload {
+  display: none;
+}
+#image-upload {
+  display: none;
+}

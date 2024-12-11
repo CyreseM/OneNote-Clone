@@ -12,32 +12,67 @@ const TextStyleDropdown = () => {
     },
     {
       label: "Heading 1",
-      style: { fontSize: "24px", fontWeight: "bold", fontStyle: "normal" },
+      style: {
+        fontSize: "24px",
+        fontWeight: "bold",
+        fontStyle: "normal",
+        cmdfont: "6",
+      },
     },
     {
       label: "Heading 2",
-      style: { fontSize: "20px", fontWeight: "bold", fontStyle: "normal" },
+      style: {
+        fontSize: "20px",
+        fontWeight: "bold",
+        fontStyle: "normal",
+        cmdfont: "5",
+      },
     },
     {
       label: "Paragraph",
-      style: { fontSize: "16px", fontWeight: "normal", fontStyle: "normal" },
+      style: {
+        fontSize: "16px",
+        fontWeight: "normal",
+        fontStyle: "normal",
+        cmdfont: "4",
+      },
     },
     {
       label: "Quotation",
-      style: { fontSize: "18px", fontStyle: "italic", fontWeight: "normal" },
+      style: {
+        fontSize: "18px",
+        fontStyle: "italic",
+        fontWeight: "normal",
+        cmdfont: "4",
+      },
     },
     {
       label: "Quote Standard",
-      style: { fontSize: "18px", fontWeight: "bold", fontStyle: "italic" },
+      style: {
+        fontSize: "18px",
+        fontWeight: "bold",
+        fontStyle: "italic",
+        cmdfont: "4",
+      },
     },
     {
       label: "Citation",
-      style: { fontSize: "14px", fontStyle: "italic", color: "#555" },
+      style: {
+        fontSize: "14px",
+        fontStyle: "italic",
+        color: "#555",
+        cmdfont: "3",
+      },
     },
   ];
 
   const handleStyleChange = (styleLabel) => {
     setSelectedStyle(styleLabel);
+    const changeStyle = styles.find((style) => style.label === styleLabel);
+    document.execCommand("fontSize", changeStyle.style?.cmdfont);
+    document.execCommand("fontName", false, changeStyle.style?.fontStyle);
+    document.execCommand("fontWeight", changeStyle.style?.fontWeight);
+    document.execCommand("color", changeStyle.style?.color);
   };
 
   return (
@@ -53,6 +88,7 @@ const TextStyleDropdown = () => {
               key={index}
               className={styler.dropdownItem}
               style={style.style}
+              tabIndex={-1}
               onClick={() => handleStyleChange(style.label)}
             >
               {style.label}

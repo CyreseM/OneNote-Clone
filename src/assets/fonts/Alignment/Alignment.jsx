@@ -33,9 +33,10 @@ const Alignment = () => {
         <FontAwesomeIcon icon={faAngleDown} />
       </button>
 
-      <ul className="dropdown-menu">
+      <ul className="dropdown-menu" tabIndex={-1}>
         {options.map((option) => (
           <li
+            tabIndex={-1}
             key={option.value}
             className="dropdown-item"
             onClick={() => handleSelect(option.value)}
